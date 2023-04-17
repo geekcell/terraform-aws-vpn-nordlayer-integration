@@ -38,18 +38,21 @@ Replace the GitHub Repo name and comment in these badges if they BridgeCrew is e
 
 -->
 
-# Terraform AWS Module Template
+# Terraform AWS VPN Nordlayer Integration
 
-A template repository for creating our AWS Terraform modules. It gives you a good starting point for creating new modules quickly.
-It comes with:
-* Basic directory structure
-* GitHub Workflow for Linting and Validation
-* Pre-Commit Hooks
-* Makefile for common tasks
+This Terraform module creates the necessary resources to activate a Nordlayer site-to-site VPN connection.
+The Nordlayer server must be created manually before to get the static IP.
+The VPN config must be manually downloaded and added to Nordlayer for approval.
 
 ## Inputs
 
-No inputs.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_nordlayer_gateway_ip"></a> [nordlayer\_gateway\_ip](#input\_nordlayer\_gateway\_ip) | Static IP of the Nordlayer gateway server. Needs to be created manually in Nordlayer UI. | `string` | n/a | yes |
+| <a name="input_prefix"></a> [prefix](#input\_prefix) | Global prefix for resource names. | `string` | n/a | yes |
+| <a name="input_route_table_ids"></a> [route\_table\_ids](#input\_route\_table\_ids) | Route table ids to add static VPN route to. Usually includes private subnet route tables and database subnet route tables. | `list(string)` | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags to add to resources. | `map(string)` | n/a | yes |
+| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | Id of the VPC to add VPN to. | `string` | n/a | yes |
 
 ## Outputs
 
@@ -57,16 +60,29 @@ No outputs.
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 4.36 |
 
 ## Resources
 
+- resource.aws_customer_gateway.main (main.tf#16)
+- resource.aws_route.main (main.tf#45)
+- resource.aws_vpn_connection.main (main.tf#27)
+- resource.aws_vpn_connection_route.main (main.tf#39)
+- resource.aws_vpn_gateway.main (main.tf#8)
 
 # Examples
 ### Complete
 ```hcl
 module "example" {
   source = "../../"
+
+  nordlayer_gateway_ip = "1.2.3.4"
+  prefix               = "example"
+  route_table_ids      = ["rtb-1235"]
+  tags                 = {}
+  vpc_id               = "vpc-1234"
 }
 ```
 <!-- END_TF_DOCS -->
