@@ -48,7 +48,12 @@ The VPN config must be manually downloaded and added to Nordlayer for approval.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_encryption_algorithms"></a> [encryption\_algorithms](#input\_encryption\_algorithms) | Encryption algorithms | `list(string)` | <pre>[<br>  "AES128",<br>  "AES128-GCM-16",<br>  "AES256",<br>  "AES256-GCM-16"<br>]</pre> | no |
+| <a name="input_ike_versions"></a> [ike\_versions](#input\_ike\_versions) | IKE versions | `list(string)` | <pre>[<br>  "ikev1",<br>  "ikev2"<br>]</pre> | no |
+| <a name="input_integrity_algorithms"></a> [integrity\_algorithms](#input\_integrity\_algorithms) | Integrity algorithms | `list(string)` | <pre>[<br>  "SHA1",<br>  "SHA2-256",<br>  "SHA2-384",<br>  "SHA2-512"<br>]</pre> | no |
 | <a name="input_nordlayer_gateway_ip"></a> [nordlayer\_gateway\_ip](#input\_nordlayer\_gateway\_ip) | Static IP of the Nordlayer gateway server. Needs to be created manually in Nordlayer UI. | `string` | n/a | yes |
+| <a name="input_phase1_dh_group_numbers"></a> [phase1\_dh\_group\_numbers](#input\_phase1\_dh\_group\_numbers) | Phase 1 dh group numbers | `list(number)` | <pre>[<br>  2,<br>  14,<br>  15,<br>  16,<br>  17,<br>  18,<br>  19,<br>  20,<br>  21,<br>  22,<br>  23,<br>  24<br>]</pre> | no |
+| <a name="input_phase2_dh_group_numbers"></a> [phase2\_dh\_group\_numbers](#input\_phase2\_dh\_group\_numbers) | Phase 2 dh group numbers | `list(number)` | <pre>[<br>  2,<br>  5,<br>  14,<br>  15,<br>  16,<br>  17,<br>  18,<br>  19,<br>  20,<br>  21,<br>  22,<br>  23,<br>  24<br>]</pre> | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | Global prefix for resource names. | `string` | n/a | yes |
 | <a name="input_route_table_ids"></a> [route\_table\_ids](#input\_route\_table\_ids) | Route table ids to add static VPN route to. Usually includes private subnet route tables and database subnet route tables. | `list(string)` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to add to resources. | `map(string)` | n/a | yes |
@@ -67,9 +72,9 @@ No outputs.
 ## Resources
 
 - resource.aws_customer_gateway.main (main.tf#16)
-- resource.aws_route.main (main.tf#45)
+- resource.aws_route.main (main.tf#61)
 - resource.aws_vpn_connection.main (main.tf#27)
-- resource.aws_vpn_connection_route.main (main.tf#39)
+- resource.aws_vpn_connection_route.main (main.tf#55)
 - resource.aws_vpn_gateway.main (main.tf#8)
 
 # Examples
