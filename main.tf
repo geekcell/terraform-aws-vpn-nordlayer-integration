@@ -31,6 +31,22 @@ resource "aws_vpn_connection" "main" {
   static_routes_only = true
   type               = "ipsec.1"
 
+  tunnel1_ike_versions                 = var.ike_versions
+  tunnel1_phase1_dh_group_numbers      = var.phase1_dh_group_numbers
+  tunnel1_phase2_dh_group_numbers      = var.phase2_dh_group_numbers
+  tunnel1_phase1_encryption_algorithms = var.encryption_algorithms
+  tunnel1_phase2_encryption_algorithms = var.encryption_algorithms
+  tunnel1_phase1_integrity_algorithms  = var.integrity_algorithms
+  tunnel1_phase2_integrity_algorithms  = var.integrity_algorithms
+
+  tunnel2_ike_versions                 = var.ike_versions
+  tunnel2_phase1_dh_group_numbers      = var.phase1_dh_group_numbers
+  tunnel2_phase2_dh_group_numbers      = var.phase2_dh_group_numbers
+  tunnel2_phase1_encryption_algorithms = var.encryption_algorithms
+  tunnel2_phase2_encryption_algorithms = var.encryption_algorithms
+  tunnel2_phase1_integrity_algorithms  = var.integrity_algorithms
+  tunnel2_phase2_integrity_algorithms  = var.integrity_algorithms
+
   tags = merge(var.tags, {
     Name = "${var.prefix}-nordlayer"
   })
