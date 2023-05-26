@@ -1,0 +1,5 @@
+README.md
+.github/workflows/*
+.terraform-docs.yml
+docs/20-badges.md
+*.tf
