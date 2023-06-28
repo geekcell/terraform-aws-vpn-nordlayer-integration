@@ -29,29 +29,29 @@ variable "tags" {
 variable "ike_versions" {
   description = "IKE versions"
   type        = list(string)
-  default     = [ "ikev1", "ikev2" ]
+  default     = ["ikev1", "ikev2"]
 }
 
 variable "phase1_dh_group_numbers" {
   description = "Phase 1 dh group numbers"
   type        = list(number)
-  default     = [ 2, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 ]
+  default     = [2, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
 }
 
 variable "phase2_dh_group_numbers" {
   description = "Phase 2 dh group numbers"
   type        = list(number)
-  default     = [ 2, 5, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 ]
+  default     = [2, 5, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
 }
 
 variable "encryption_algorithms" {
   description = "Encryption algorithms"
   type        = list(string)
-  default     = [ "AES128", "AES128-GCM-16", "AES256", "AES256-GCM-16" ]
+  default     = ["AES128", "AES128-GCM-16", "AES256", "AES256-GCM-16"]
 }
 
 variable "integrity_algorithms" {
   description = "Integrity algorithms"
   type        = list(string)
-  default     = [ "SHA1", "SHA2-256", "SHA2-384", "SHA2-512" ]
+  default     = ["SHA1", "SHA2-256", "SHA2-384", "SHA2-512"]
 }
